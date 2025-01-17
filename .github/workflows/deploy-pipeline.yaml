@@ -37,10 +37,25 @@ jobs:
             if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi 
       - name: Zip bundle
         run: |
-            cd function
+            cd functions
             zip -r ../${{ github.sha }}.zip .
       - name: Archive artifact
         uses: actions/upload-artifact@v2
         with:
           name: zipped-bundle
           path: ${{ github.sha }}.zip
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+      - uses: actions/create-release@v1
+      - env: 
+        GITHUB_TOKEN: ${{ secrets.github_token }}
+      - with:
+        tag_name: ${{ github.run_number }}
+        release_name: Release from ${{ github.run_number }}
+        body: Release for ${{ github.sha }}
+        draft: false
+        prerelease: false
+  
