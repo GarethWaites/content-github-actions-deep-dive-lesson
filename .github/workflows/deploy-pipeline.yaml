@@ -42,6 +42,7 @@ jobs:
           mkdir -p dist
           echo "Current working directory: $(pwd)" # Add this line
           echo "Functions directory path: ./functions" # Add this line
+          mkdir functions
           cd functions
           echo "Working directory after cd: $(pwd)" # Add this line
           zip -r ../dist/${ZIP_FILE_NAME} .
