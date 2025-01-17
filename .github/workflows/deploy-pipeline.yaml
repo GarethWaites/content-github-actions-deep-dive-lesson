@@ -39,9 +39,12 @@ jobs:
       - name: Zip bundle
         run: |
           ZIP_FILE_NAME="${{ github.sha }}.zip"
-          mkdir -p dist # Create a directory for the artifact if it doesn't exist
-          cd functions  #Corrected path
-          zip -r ../dist/${ZIP_FILE_NAME} . #Corrected path and use variable
+          mkdir -p dist
+          echo "Current working directory: $(pwd)" # Add this line
+          echo "Functions directory path: ./functions" # Add this line
+          cd functions
+          echo "Working directory after cd: $(pwd)" # Add this line
+          zip -r ../dist/${ZIP_FILE_NAME} .
       - name: Archive artifact
         uses: actions/upload-artifact@v4
         with:
