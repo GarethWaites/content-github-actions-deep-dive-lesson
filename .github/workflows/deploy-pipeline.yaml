@@ -49,13 +49,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Release
-      - uses: actions/create-release@v1
-      - env: 
-        GITHUB_TOKEN: ${{ secrets.github_token }}
-      - with:
-        tag_name: ${{ github.run_number }}
-        release_name: Release from ${{ github.run_number }}
-        body: Release for ${{ github.sha }}
-        draft: false
-        prerelease: false
+        uses: actions/create-release@v1
+        env: 
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release from ${{ github.run_number }}
+          body: Release for ${{ github.sha }}
+          draft: false
+          prerelease: false
   
